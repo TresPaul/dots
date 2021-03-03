@@ -1,0 +1,25 @@
+[Animation]
+Frames=7
+
+[Appearance]
+Skin=arc-dark
+SkinInstalledWithKns=true
+
+[Desktop Entry]
+DefaultProfile=Yakuake Profile.profile
+
+[Dialogs]
+FirstRun=false
+
+[DownloadDialog Settings]
+Height 768=494
+Width 1366=700
+
+[Favorite Profiles]
+Favorites=Yakuake Profile.profile
+
+[Window]
+DynamicTabTitles=true
+Height=100
+ShowSystrayIcon=false
+Width=100
