@@ -5,7 +5,8 @@ Plug 'lervag/vimtex'
 "Plug 'sirver/ultisnips'
 Plug 'Shougo/deoplete.nvim'
 Plug 'joshdick/onedark.vim'
-Plug 'junegunn/seoul256.vim'
+"Plug 'junegunn/seoul256.vim'
+"Plug 'altercation/vim-colors-solarized'
 Plug 'itchyny/lightline.vim'
 Plug 'rstacruz/vim-closer'
 Plug 'alvan/vim-closetag'
@@ -13,6 +14,15 @@ Plug 'preservim/nerdtree'
 Plug 'bling/vim-bufferline'
 Plug 'posva/vim-vue'
 Plug 'dense-analysis/ale'
+Plug 'preservim/vim-wordy'
+Plug 'tidalcycles/vim-tidal'
+Plug 'tpope/vim-commentary'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'wfxr/minimap.vim'
+"Plug 'sslivkoff/vim-scroll-barnacle'
+Plug 'psliwka/vim-smoothie'
 call plug#end()
 
 " general settings
@@ -39,14 +49,15 @@ set smartcase
 set nobackup
 set nowb
 set noswapfile
-" - visual / gui / colorscheme
+" - visual / gui
 set showcmd
 set number
-set background=dark
 set mouse=a
 " - navigating up and down in single-line paragraphs
 nnoremap k gk
 nnoremap j gj
+" - show partial last lines instead of @ signs
+set display+=lastline
 " - return to last edit position (Amix)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " - sync clipboard
@@ -59,10 +70,15 @@ set foldlevel=2
 " - allow unsaved background buffers
 set hidden
 
-" onedark colorscheme
+" colorscheme
 set termguicolors
+set background=dark
 colorscheme onedark
 let g:onedark_terminal_italics=1
+
+" set background to transparent
+hi Normal guibg=None
+
 
 " vimtex
 let g:vimtex_compiler_progname = 'nvr'
@@ -102,6 +118,9 @@ let g:lightline = {
   \ }
 set noshowmode
 
+" fix italics
+highlight Comment cterm=italic gui=italic
+
 " NERDTree
 " - map to Ctrl+n
 map <C-n> :NERDTreeToggle<CR>
@@ -129,7 +148,13 @@ call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
-hi Normal guibg=None
-
 " vim-vue
 let g:vue_pre_processors = []
+
+" tidalcycles
+let g:tidal_target = "terminal"
+
+" minimap
+let g:minimap_highlight_range = 1
+let g:minimap_git_colors = 1
+let g:minimap_highlight_search = 1

@@ -31,12 +31,17 @@ else
 fi
 
 # aliases
-alias ls='ls --color=auto'
-alias l='ls -Alh'
+alias ls='exa'
+alias l='exa -l'
+alias la='exa -a'
+alias lla='exa -la'
+alias lt='exa -lT'
 alias xdg='xdg-open'
+alias pacman='pacman --color auto'
 alias aur='auracle'
 alias qmv='qmv --format destination-only'
 alias ffmpeg='ffmpeg -hide_banner'
+alias ffprobe='ffprobe -hide_banner'
 alias v='nvim'
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
 
