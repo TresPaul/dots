@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-GB">
+<!--
+    TODO:
+    - "and"="text" in citation but "symbol" in bibliography
+    - unpublished
+-->
   <info>
     <title>Stellenbosch University - Harvard</title>
     <id>http://www.zotero.org/styles/harvard-stellenbosch-university</id>
@@ -48,7 +53,10 @@
       <name name-as-sort-order="all" and="symbol" sort-separator=", " initialize-with="." delimiter=", " delimiter-precedes-last="never"/>
       <label form="short" prefix=" " text-case="capitalize-first"/>
       <substitute>
-        <names variable="editor"/>
+        <names variable="editor">
+          <name name-as-sort-order="all" and="symbol" sort-separator=", " initialize-with="." delimiter=", " delimiter-precedes-last="never"/>
+          <label form="short" prefix=" (" suffix=")"/>
+        </names>
         <names variable="translator"/>
         <choose>
           <if type="bill book graphic legal_case legislation motion_picture report song webpage" match="any">
@@ -134,7 +142,7 @@
       <else-if variable="URL">
         <group delimiter=" ">
           <group delimiter=": ">
-            <group delimiter=", ">
+            <group delimiter=". ">
               <text term="online" prefix="[" suffix="]" text-case="capitalize-first"/>
               <text term="available at" text-case="capitalize-first"/>
             </group>
@@ -276,10 +284,10 @@
           </else-if>
           <else-if type="chapter paper-conference entry-encyclopedia entry-dictionary" match="any">
             <text macro="title"/>
-            <group delimiter=" ">
-              <text term="in" text-case="capitalize-first"/>
-              <text macro="book-details"/>
+            <group delimiter=". ">
+              <text term="in" text-case="capitalize-first" suffix=":"/>
               <text variable="container-title" font-style="italic"/>
+              <text macro="book-details"/>
             </group>
             <text variable="page"/>
           </else-if>
