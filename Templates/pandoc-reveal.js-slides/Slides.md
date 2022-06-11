@@ -8,11 +8,15 @@ compile-with: "pandoc -t revealjs --self-contained --slide-level 2 -o output.htm
 revealjs-url: reveal.js
 header-includes: |
   <style>
-    p {
-      text-align: left;
+    .reveal .slides {
+      text-align: left; !important
     }
-    p.date, p.author {
-      text-align: center;
+    /* standalone headings and title card */
+    h1, h2, .author, .date {
+      text-align: center; !important
+    }
+    .reveal ul {
+      display: block;
     }
   </style>
 ---

@@ -36,7 +36,7 @@ alias l='exa -l'
 alias la='exa -a'
 alias lla='exa -la'
 alias lt='exa -lT'
-alias xdg='xdg-open'
+alias x='xdg-open'
 alias pacman='pacman --color auto'
 alias aur='auracle'
 alias qmv='qmv --format destination-only'
@@ -44,10 +44,15 @@ alias ffmpeg='ffmpeg -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
 alias v='nvim'
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
+alias tw='tweeterr'
 
 # computer-specific aliases: change IP below
 alias sshfslink='sshfs 10.0.2.240:/home/paul /mnt'
 alias sshfsunlink='fusermount3 -u /mnt'
+
+# gcloud
+source /opt/google-cloud-sdk/completion.zsh.inc
+source /opt/google-cloud-sdk/path.zsh.inc
 
 # latex
 # (awk by Peter on SE: https://tex.stackexchange.com/a/416658)
@@ -67,3 +72,5 @@ dolatex () {
 
 #syntax highlighting - must be at end
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/nvm/init-nvm.sh
+eval "$(pyenv init -)"

@@ -1,0 +1,22 @@
+---
+geometry:
+  - margin=2.5cm
+hyperrefoptions:
+  - bookmarks
+  - "colorlinks=true"
+  - allcolors=black
+  - breaklinks
+indent: true
+linestretch: 1.25
+papersize: a4
+fontfamily: noto
+fontfamilyoptions:
+  - sfdefault
+  - light
+fontsize: 11pt
+numbersections: true
+
+bibliography: bibliography.bib
+csl: /home/paul/Templates/pandoc-citations/harvard-stellenbosch-university_paulfix.csl
+reference-section-title: References
+---
