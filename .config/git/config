@@ -1,0 +1,5 @@
+[user]
+	email = paul@trespaul.com
+	name = Paul J
+[init]
+	defaultBranch = main

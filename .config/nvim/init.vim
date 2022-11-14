@@ -7,16 +7,19 @@ Plug 'junegunn/goyo.vim'
 Plug 'lervag/vimtex'
 "Plug 'sirver/ultisnips'
 Plug 'Shougo/deoplete.nvim'
-Plug 'joshdick/onedark.vim'
+"Plug 'joshdick/onedark.vim'
 "Plug 'junegunn/seoul256.vim'
 "Plug 'altercation/vim-colors-solarized'
-Plug 'itchyny/lightline.vim'
+Plug 'ellisonleao/gruvbox.nvim'
+"Plug 'itchyny/lightline.vim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'rstacruz/vim-closer'
 Plug 'alvan/vim-closetag'
-Plug 'preservim/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'preservim/nerdtree'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'bling/vim-bufferline'
-Plug 'posva/vim-vue'
+"Plug 'posva/vim-vue'
 Plug 'dense-analysis/ale'
 Plug 'preservim/vim-wordy'
 Plug 'supercollider/scvim'
@@ -27,18 +30,27 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 "Plug 'wfxr/minimap.vim'
 "Plug 'sslivkoff/vim-scroll-barnacle'
-Plug 'psliwka/vim-smoothie'
+"Plug 'psliwka/vim-smoothie'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'godlygeek/tabular'
+"Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+"Plug 'tweekmonster/startuptime.vim'
 call plug#end()
 
 
 "-----------------------------------------
 "  General setup
 "-----------------------------------------
+
+" turn off built-in file browser
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
 
 set encoding=utf-8
 
@@ -107,6 +119,9 @@ augroup spellingSettings
   autocmd FileType markdown,tex,xhtml setlocal spell
 augroup END
 
+" set python path for faster startup, maybe
+let g:python3_host_prog = expand('/usr/bin/python')
+
 
 "-----------------------------------------
 "  Appearance
@@ -115,17 +130,40 @@ augroup END
 set guifont=FiraCode\ Nerd\ Font\ 14
 
 " fix italics
-highlight Comment cterm=italic gui=italic
+"highlight Comment cterm=italic gui=italic
 
 set termguicolors
 set background=dark
 
-colorscheme onedark
-let g:onedark_terminal_italics=1
+"colorscheme onedark
+"let g:onedark_terminal_italics=1
+
+"colorscheme gruvbox
+
+lua << EOF
+require("gruvbox").setup({
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = true,
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "hard", -- can be "hard", "soft" or empty string
+  dim_inactive = false,
+  transparent_mode = false,
+})
+vim.cmd("colorscheme gruvbox")
+EOF
 
 " remove background set by colorscheme
 hi Normal guibg=None
 
+" highlighting embedded lua/Python/ruby in vim files
+let g:vimsyn_embed = 'lPr'
 
 "-----------------------------------------
 "  Keymaps
@@ -145,7 +183,7 @@ nnoremap <silent> <leader>k <C-w>k
 nnoremap <silent> <leader>l <C-w>l
 
 " fzf
-nnoremap <silent> <leader>f :FZF<CR>
+nnoremap <silent> <leader>fu :FZF<CR>
 
 " window sizing
 nnoremap <silent> <leader>H <C-w><h
@@ -199,6 +237,7 @@ nmap <leader>x :!xdg-open %<cr><cr>
 imap ;; <Esc>A;<Esc>
 imap ,, <Esc>A,<Esc>
 
+" sudo write
 cmap w!! %!sudo tee > /dev/null %
 
 
@@ -232,10 +271,54 @@ call deoplete#custom#option('smart_case', v:true)
 let g:closetag_filetypes = 'vue,html'
 
 " lightline
-let g:lightline = {
-  \ 'colorscheme': 'onedark',
-  \ }
+"let g:lightline = {
+"  \ 'colorscheme': 'onedark',
+"  \ }
 set noshowmode
+
+" lualine
+lua << EOF
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
+}
+EOF
 
 " vim-vue
 let g:vue_pre_processors = []
@@ -255,15 +338,25 @@ let g:vim_markdown_strikethrough = 1
 let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_math = 1
 
+" telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" nvim-tree.lua
+lua << EOF
+require("nvim-tree").setup()
+EOF
 
 " NERDTree
 
 " - map to Ctrl+n
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<CR>
 
 " - open automatically when vim starts with directory
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'NERDTree' argv()[0] | endif
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'NERDTree' argv()[0] | endif
 
 " - close vim if only window left is NERDtree
 "autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -286,4 +379,3 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 "call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 "call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 "call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-

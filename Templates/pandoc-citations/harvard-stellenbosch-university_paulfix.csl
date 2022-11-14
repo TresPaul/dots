@@ -4,6 +4,7 @@
     TODO:
     - "and"="text" in citation but "symbol" in bibliography
     - unpublished
+    - when both editor and translator, must have space
 -->
   <info>
     <title>Stellenbosch University - Harvard</title>
@@ -35,15 +36,19 @@
       <if variable="editor">
         <names variable="editor">
           <name and="symbol" initialize-with="." delimiter=", "/>
-          <label form="short" prefix=" (" suffix=")"/>
+          <label form="short" prefix=" (" suffix="). "/>
         </names>
       </if>
     </choose>
     <choose>
       <if variable="translator">
         <names variable="translator">
+          <!--
           <label form="verb" text-case="capitalize-first" suffix=" "/>
           <name and="symbol" delimiter=", "/>
+          -->
+          <name and="symbol" initialize-with="." delimiter=", "/>
+          <label form="short" prefix=" (" suffix=")"/>
         </names>
       </if>
     </choose>
