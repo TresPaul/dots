@@ -2,7 +2,8 @@
 Frames=7
 
 [Appearance]
-Skin=arc-dark
+HideSkinBorders=true
+Skin=Arc Dark Gruvbox Custom
 SkinInstalledWithKns=true
 
 [Desktop Entry]
@@ -17,6 +18,9 @@ Width 1366=700
 
 [Favorite Profiles]
 Favorites=Yakuake Profile.profile
+
+[KFileDialog Settings]
+detailViewIconSize=16
 
 [Notification Messages]
 hinding_title_bar=false
