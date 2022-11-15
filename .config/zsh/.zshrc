@@ -70,8 +70,12 @@ alias sshfslink='sshfs 10.0.2.240:/home/paul /mnt'
 alias sshfsunlink='fusermount3 -u /mnt'
 
 # gcloud
-source /opt/google-cloud-sdk/completion.zsh.inc
-source /opt/google-cloud-sdk/path.zsh.inc
+
+GCLOUD_DIR="/opt/google-cloud-sdk"
+if [ -d "$GCLOUD_DIR" ]; then
+  source $GCLOUD_DIR/completion.zsh.inc
+  source $GCLOUD_DIR/path.zsh.inc
+fi
 
 # latex
 # (awk by Peter on SE: https://tex.stackexchange.com/a/416658)
@@ -149,10 +153,13 @@ export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 # .xmonad
 # .zotero
 
-# TODO: ZSH_History
+if [ -x /usr/bin/pyenv ]; then
+  eval "$(pyenv init -)"
+fi
+
+#source /usr/share/nvm/init-nvm.sh
 
 #syntax highlighting - must be at end
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source /usr/share/nvm/init-nvm.sh
-eval "$(pyenv init -)"
+
 #zprof
