@@ -349,6 +349,9 @@ lua << EOF
 require("nvim-tree").setup()
 EOF
 
+" pandoc
+let g:pandoc#folding#fdc = 0
+
 " NERDTree
 
 " - map to Ctrl+n
