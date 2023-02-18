@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=GruvboxCustom
-Font=FiraCode Nerd Font Mono,11,-1,5,25,0,0,0,0,0,Light
+Font=FiraCode Nerd Font,11,-1,5,50,0,0,0,0,0
 UseFontLineChararacters=true
 
 [Cursor Options]
