@@ -2,7 +2,6 @@
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-GB">
 <!--
     TODO:
-    - "and"="text" in citation but "symbol" in bibliography
     - unpublished
     - when both editor and translator, must have space
 -->
@@ -76,7 +75,7 @@
   </macro>
   <macro name="author-short">
     <names variable="author">
-      <name form="short" and="symbol" delimiter-precedes-last="never" initialize-with="." sort-separator=" "/>
+      <name form="short" and="text" initialize-with="." sort-separator=" "/>
       <et-al font-style="italic"/>
       <substitute>
         <names variable="editor"/>
@@ -208,7 +207,7 @@
       <text variable="publisher"/>
     </group>
   </macro>
-  <citation disambiguate-add-year-suffix="true" year-suffix-delimiter="," disambiguate-add-names="true" disambiguate-add-givenname="false" collapse="year-suffix" et-al-min="4" et-al-use-first="3"  et-al-subsequent-min="3" et-al-subsequent-use-first="1">
+  <citation disambiguate-add-year-suffix="true" year-suffix-delimiter="," disambiguate-add-names="true" disambiguate-add-givenname="false" collapse="year-suffix"  et-al-subsequent-min="3" et-al-subsequent-use-first="1">
     <sort>
       <key macro="author"/>
       <key macro="date-issued-no-parentheses"/>
@@ -231,7 +230,7 @@
       </group>
     </layout>
   </citation>
-  <bibliography hanging-indent="true" et-al-min="9" et-al-use-first="8">
+  <bibliography et-al-min="9" et-al-use-first="8" entry-spacing="1">
     <sort>
       <key macro="author-short" names-min="1" names-use-first="1"/>
       <key macro="author-count" names-min="3" names-use-first="3"/>
