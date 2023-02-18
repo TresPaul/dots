@@ -48,6 +48,9 @@ else
   export EDITOR='nvim'
 fi
 
+# stack bin directory
+export PATH="$HOME/.local/bin:$PATH"
+
 # aliases
 alias ls='exa'
 alias l='exa -l --icons --git'
@@ -65,8 +68,9 @@ alias dots='/usr/bin/git --git-dir=$XDG_CONFIG_HOME/dotfiles.git/ --work-tree=$H
 alias tw='tweeterr'
 alias ip='ip -c'
 
+# reset sudo timeout and
 # alias expand commands following sudo
-alias sudo='sudo '
+alias sudo='sudo -v; sudo '
 
 # computer-specific aliases: change IP below
 alias sshfslink='sshfs 10.0.2.240:/home/paul /mnt'
