@@ -1,0 +1,30 @@
+theme = "gruvbox_transparent"
+
+[editor]
+bufferline = "multiple"
+auto-format = false
+
+[editor.statusline]
+mode.normal = "N"
+mode.insert = "I"
+mode.select = "S"
+right = ["version-control", "diagnostics", "selections", "position", "file-encoding"]
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+character = "┊"
+skip-levels = 1
+
+[editor.soft-wrap]
+enable = true
+wrap-indicator = ""
+
+[editor.lsp]
+display-inlay-hints = true
+display-messages = true
