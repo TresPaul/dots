@@ -43,7 +43,7 @@ else
   export EDITOR='helix'
 fi
 
-export PAGER="bat"
+export PAGER="bat -p"
 
 # stack bin directory
 export PATH="$HOME/.local/bin:$PATH"
