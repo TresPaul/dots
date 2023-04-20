@@ -1,0 +1,1 @@
+/usr/lib/helix/runtime/queries/haskell/highlights.scm

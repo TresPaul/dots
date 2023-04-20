@@ -1,0 +1,9 @@
+[[language]]
+name = "tidal"
+scope = "source.tidal"
+roots = []
+injection-regex = "tidal"
+file-types = ["tidal"]
+comment-token = "--"
+indent = { tab-width = 2, unit = "  " }
+grammar = "haskell"

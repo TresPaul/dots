@@ -28,3 +28,6 @@ wrap-indicator = ""
 [editor.lsp]
 display-inlay-hints = true
 display-messages = true
+
+[keys.normal]
+"A-ret" = ":pipe-to ./tidal_send.sh"
