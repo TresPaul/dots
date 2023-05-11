@@ -3,7 +3,7 @@ export ZDOTDIR="/home/paul/.config/zsh"
 export XDG_STATE_HOME="$HOME/.local/state"
 
 # oh-my-zsh
-export ZSH="/home/paul/.local/share/oh-my-zsh"
+export ZSH="/usr/share/oh-my-zsh"
 zstyle ':omz:update' mode disabled
 
 ZSH_THEME="awesomepanda"
@@ -22,7 +22,7 @@ source $ZSH/oh-my-zsh.sh
 # put compdumps in the cache instead of home
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
-export HISTFILE="$ZDOTDIR/.zsh_history"
+export HISTFILE="$XDG_STATE_HOME"/zsh/history
 
 # antidot
 eval "$(antidot init)"
