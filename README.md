@@ -1,3 +1,6 @@
+Deprecated: I'm now using NixOS.
+See my [config repo](https://github.com/trespaul/config).
+
 # dots
 
 ## Creation
